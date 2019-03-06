@@ -5,6 +5,13 @@
 Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins scolaires / pro ou pour se divertir. Nous souhaitons analyser notre utilisation et visualiser le temps passé sur chaque catégorie de sites web ou de façon plus granulaire, sur chaque site web. Ces visualisations permettront notamment de quantifier notre productivité au cours des semaines à venir et éventuellement nous aider à être plus productifs en gérant correctement notre utilisation. 
 
 ![Image](AddictioNET.jpg)
+<table border="0">
+  <tr>
+    <td>
+      <img src="demo.gif" style="width: 100px;">
+    </td>
+  </tr>
+</table>
 
 ## Visualisations
 L'application que nous avons développée permet d'avoir un aperçu qualitatif et quantitatif sur le temps passé sur sa machine. Ceci se fait à travers cinq graphiques différents, qui chacun montrent un certain aspect de la productivité :
