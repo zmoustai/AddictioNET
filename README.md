@@ -7,7 +7,7 @@ Nous passons énormement de temps sur internet chaque jour, que cela soit pour d
 <table border="0">
   <tr>
     <td>
-      <img src="demo.gif" style="width: 100px;">
+      <img src="demo.gif" style="width: 100px;" class="center">
     </td>
   </tr>
 </table>
