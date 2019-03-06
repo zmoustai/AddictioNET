@@ -1,0 +1,129 @@
+body {
+    background-color: #1B2F38;
+    font-family:  Verdana, Geneva, Tahoma, sans-serif
+}
+
+td.chart {
+    background-color: #F0EDF5;
+    border-radius: 15px;
+}
+
+.fileupload {
+    background-color: #C28754;
+    border-radius: 5px;
+    padding: 7pt;
+    cursor: pointer;
+}
+
+.pageHeading {
+    padding-left: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    color : floralwhite;
+}
+
+/* for titles for all plots */
+.plotHeading {
+    font-family:  Georgia, 'Times New Roman', Times, serif;
+    font-size: 18pt;
+    margin-left: 39%;
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #111F26;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.axis.x.label {
+    fill : black;
+    font-size: smaller;
+}
+.tick line{
+    opacity: 0.2;
+}
+
+/* everything for tooltip */
+.toolTip {
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #6F257F;
+    padding: 14px;
+    text-align: center;
+}
+
+.line {
+    fill: none;
+    stroke: #ffab00;
+    stroke-width: 3;
+}
+
+path {
+    fill:none;
+    stroke-width:2px;
+}
+
+/* multiline chart lines  */
+.path_Productive {
+    stroke:#57828b;
+}
+.path_Distracted {
+    stroke:#b2454b;
+}
+.path_Neutral {
+    stroke: #a6804e;
+}
+
+/* slices of pie  */
+.path_pie_Productive {
+    fill: #57828b;
+}
+.path_pie_Distracted {
+    fill: #b2454b;
+}
+.path_pie_Neutral {
+    fill: #a6804e;
+}
+
+ /* Legends for rectangels  */
+.rect_Productive {
+    fill:#57828b;
+    cursor: pointer;
+}
+.rect_Distracted {
+    fill:#b2454b;
+    cursor: pointer;
+}
+.rect_Neutral {
+    fill: #a6804e;
+    cursor: pointer;
+}
+
+/* for line and multiline chart  */
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
+ /* important for brushing and zooming */
+.path_avg{
+    clip-path: url(#clip);
+}
+
+.label{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    fill : seashell;
+}

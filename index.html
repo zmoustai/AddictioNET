@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>D3 Project</title>
+    <script type="text/javascript" src="js/jQuery.min.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="js/selectize.js"></script>
+    <script type="text/javascript" src="js/intro.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/selectize.css"/>
+    <link type="text/css" rel="stylesheet" href="css/introjs.css"/>
+</head>
+<body>
+<table width="100%" height="94%">
+    <tr>
+        <td>
+            <table width="100%" height="100%">
+                <tr>
+                    <td width=" 80%">
+                        <p class="pageHeading">
+                            RescueTime Data Explorer
+                        </p>
+                    </td>
+                    <td>
+                        <label for="upload" class="fileupload step8">
+                                Crunch your data
+                                <input type="file" accept=".csv" name="upload" id="upload" onchange="fileUpload(this);" style="display: none;"/>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td >
+            <div class="step7">
+                <select multiple>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>       
+                </select>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="chart step2">
+            <p class="plotHeading">Productivity Evolution</p>
+            <div id="multiLine"></div>
+        </td>
+        <td rowspan="2">
+            <table width="100%" height="100%">
+                <tr>
+                    <td class="chart step4">
+                        <p class="plotHeading">Productivity Usage</p>
+                        <div id="parentPie"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="chart step5">
+                        <p class="plotHeading">Top Activities</p>
+                        <div id="topActivitiesBar"></div>            
+                    </td>
+                </tr>
+                <tr>
+                    <td class="chart step6">
+                        <p class="plotHeading">Top Categories</p>
+                        <div id="topCategoryBar"></div>            
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="chart step3">
+            <p class="plotHeading">Hourly Productivity Score</p>
+            <div id="hourProductiveScore"></div>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
