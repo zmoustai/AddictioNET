@@ -6,6 +6,9 @@ Nous passons énormement de temps sur internet chaque jour, que cela soit pour d
 
 <img src="demo.gif" class="centerImage" style="width: 500px;">
 
+<p align="center">
+  <img src="demo.gif">
+</p>
 
 ## Visualisations
 L'application que nous avons développée permet d'avoir un aperçu qualitatif et quantitatif sur le temps passé sur sa machine. Ceci se fait à travers cinq graphiques différents, qui chacun montrent un certain aspect de la productivité :
