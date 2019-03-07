@@ -3,32 +3,39 @@ var globalPlotDataRepo = [];
 var dataForDaysSelected = [];
 var totalHrs = 0;
 const tooltip = d3.select("body").append("div").attr("class", "toolTip");
+// will be used to convert date string from csv to date format
 const parseDate =  d3.timeParse("%Y-%m-%d");
+// will be used to convert date to string representing the date 
 const formatDate = d3.timeFormat("%Y-%m-%d");
+
 const  productive_cat = ['Reference & Learning', 'Software Development', 'Utilities', 
     'Business', 'Communication & Scheduling', 'Design & Composition'];
 const distracted_cat = ['Entertainment', 'Social Networking', 'Shopping', 'News & Opinion'];
 const neutral_cat = ['Uncategorized'];
 
+// capture the browser window height and width
 const window_Height = $(window).height(),
     window_Width = $(window).width();
 
-const leftPart_w = +(window_Width * 0.58),
-    rightPart_w = +(window_Width * 0.38), 
-    multiLineChart_h = +(window_Height * 0.42),
-    lineChart_h = +(window_Height * 0.28),
-    pie_h = +(window_Height * 0.28),
-    bar_h = +(window_Height * 0.17); 
+// here we are calculating how much space each plot will take 
+const leftPart_w = +(window_Width * 0.58), // left plots width
+    rightPart_w = +(window_Width * 0.38),  // right plots width
+    multiLineChart_h = +(window_Height * 0.42), // multiline chart height
+    lineChart_h = +(window_Height * 0.28), // line chart height
+    pie_h = +(window_Height * 0.29), // pie chart height
+    bar_h = +(window_Height * 0.20); // bar chart height each
 
+// used by data filters
 var start_hour = 0,
     end_hour = 23,
     start_date = "",
     end_date = "";
 
+// just to initialise Selectize functionality
 $(function(){
     $("select").selectize({
-        items : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        create : false,
+        items : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], // add entries for days
+        create : false, // user won't be able to add new day or delete 
         placeholder : "Select day(s)",
         onChange : function(value){
             selectedDays = value;
@@ -38,24 +45,26 @@ $(function(){
     })
 });
 
+// used to load data from the default csv file 
+// async call 
 function readFromCsv(){
     d3.csv("data_rescuetime.csv", function(d) {
         return {
-            date    : d.date, 
+            date    : d.date, // not parsing date here  
             weekday : d.weekday,
-            hour    : +d.hour,
+            hour    : +d.hour, // converting to number format
             activity: d.activity,
             category: d.category,
             detailedCategory : d.detailedCat,
             productivityType : d.productivity_type,
-            duration : +d.duration
+            duration : +d.duration // converting to number format
         }
     }).then(function(data) {
-        globalPlotDataRepo = data;
+        globalPlotDataRepo = data; // once we have data then load it in global variable 
         // console.log(data);
-        plotGraphs();
+        plotGraphs(); // let's plot charts 
         setTimeout(function(){
-            startIntroduction();
+            startIntroduction(); // wait for all charts to be loaded then show introduction
         }, 1000);
         
     });
@@ -67,7 +76,7 @@ var piechartChildData = [];
 
 function getData_productivityType(input_data){
     var data= d3.nest()
-        .key(function(d) { return d.productivityType; })
+        .key(function(d) { return d.productivityType; }) // grouping by productivity 
         .sortKeys(d3.ascending)
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
@@ -89,10 +98,12 @@ function plot_pie(data, parentData){
     const pie = d3.pie()
         .value(function(d) { return d.value; });
 
+    // this is to show the actual pie 
     const arc = d3.arc()
         .innerRadius(0)
-        .outerRadius(pieRadius * 0.5);
+        .outerRadius(pieRadius * 0.5); 
 
+    // this is for the labels around each slice
     const secondArc = d3.arc()
         .innerRadius(pieRadius * 0.5)
         .outerRadius(pieRadius * 0.8);
@@ -101,12 +112,14 @@ function plot_pie(data, parentData){
         .domain(["Productive", "Distracted", "Neutral"])
         .range(["#323996", "#a50026", "#d9efee"]);
 
+    // to calculate the angle of movement for pie slices 
     function arcTween(a){
         const i = d3.interpolate(this._current, a);
         this._current = i(1);
         return (t) => arc(i[t]); 
     }
 
+    // initialize the pie svg
     const parentPie = d3.select("#parentPie")
         .append("svg")
             .attr("width", pieWidth)
@@ -114,23 +127,26 @@ function plot_pie(data, parentData){
         .append("g")
             .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
 
+    // add pie slices
     const path = parentPie.selectAll("path")
         .data(pie(data));
 
-    path.transition().duration(15000).attrTween("d", arcTween);
+    path.transition().duration(15000).attrTween("d", arcTween); // the animation for movement
     
     path.enter().append("path")
-        .attr("class" , (d) => "path_pie_"+ (d.data.key))
+        .attr("class" , (d) => "path_pie_"+ (d.data.key)) // this class will decide the pie color
         .attr("d", arc)
         .attr("stroke-width", "2px")
         .each( (d) => { this._current = d; });
     
-    path.exit().remove();
+    path.exit().remove(); // never used as we have same number of pie slices 
 
+    // used for calculating label position angle
     function midAngle(d) {
         return d.startAngle + (d.endAngle - d.startAngle) / 2;
     }
 
+    // create label texts 
     const text = parentPie.selectAll("text")
 		.data(pie(data), (d) => { return d.data.key; } );
 
@@ -141,7 +157,7 @@ function plot_pie(data, parentData){
             var pos = secondArc.centroid(d);
             pos[0] = pieRadius * (midAngle(d) < Math.PI ? 1 : -1);
             return  "translate("+ pos +")";
-        })
+        }) 
         .attr("text-anchor", (d) => {
                 return (midAngle(d)) < Math.PI ? 'start' : 'end';
         })
@@ -151,6 +167,7 @@ function plot_pie(data, parentData){
 
     text.exit().remove();
 
+    // the connectors 
     var polyline = parentPie.selectAll("polyline")
         .data(pie(data), (d) => {return d.data.key})
         .enter()
@@ -165,7 +182,7 @@ function plot_pie(data, parentData){
         .style("stroke", "black")
         .style("stroke-width", "1px");
 
-    // legend
+    // legends 
     const legend = parentPie
         .attr("text-anchor", "end")
         .selectAll("g")
@@ -174,6 +191,7 @@ function plot_pie(data, parentData){
             .attr("transform", (d, i) => `translate(${pieRadius + 80},${(i * 22) - 70})`)
             .attr("class", "legends");
 
+    // color rect in legend
     legend.append("rect")
         .attr("x", -19)
         .attr("width", 19)
@@ -183,6 +201,7 @@ function plot_pie(data, parentData){
             update_barCharts(d.data.key);
         });
 
+    // text in legend
     legend.append("text")
         .attr("x", -24)
         .attr("y", 9.5)
@@ -204,24 +223,26 @@ const margin_bar = {
     },
     width_bar = w_bar - margin_bar.left - margin_bar.right,
     height_bar = h_bar - margin_bar.top - margin_bar.bottom;
+
 const barColor = d3.scaleOrdinal()
     .domain([0,1,2,3,4])
-    .range(["#99BBD9", "#6493BD", "#507DA4", "#396285", "#284C6B"]);
+    .range(["#ffffd4", "#fed98e", "#fe9929", "#d95f0e", "#993404"]);
+    //.range(["#99BBD9", "#6493BD", "#507DA4", "#396285", "#284C6B"]);
 var labelWidth = 0;
 
 function getData_topCategories(input_data){
     var data = d3.nest()
-        .key(function(d) { return d.category; })
+        .key(function(d) { return d.category; }) // group by category
         .rollup(function(d) {
             return  d3.sum(d, function(g) { return +g.duration; })
         })
         .entries(input_data);
-    data.sort(function(a, b) { return b.value - a.value});    
-    data = data.splice(0, 5);
-    data.sort(function(a, b) { return a.value - b.value});  
+    data.sort(function(a, b) { return b.value - a.value});    // sort desc
+    data = data.splice(0, 5); // take top 5
+    data.sort(function(a, b) { return a.value - b.value}); // sort asc because we want smaller bar at the bottom  
     data.forEach(function(elem){
         var secs = elem.value;
-        elem.value = (secs / 3600).toFixed(2); //~ values 
+        elem.value = (secs / 3600).toFixed(2); //~ hour values
     });
     // console.log(data);
     return data;
@@ -229,7 +250,7 @@ function getData_topCategories(input_data){
 
 function getData_topActivities(input_data){
     var data = d3.nest()
-        .key(function(d) { return d.activity; })
+        .key(function(d) { return d.activity; }) // 
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
         })
@@ -248,9 +269,9 @@ function getData_topActivities(input_data){
     
 function getData_productivityType_category(input_data){
     var data = d3.nest()
-        .key(function(d) { return d.productivityType; })
+        .key(function(d) { return d.productivityType; }) // parent group by productivity
         .sortKeys(d3.ascending)
-        .key(function(d) { return d.category; })
+        .key(function(d) { return d.category; }) // child group by category
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
         })
@@ -270,9 +291,9 @@ function getData_productivityType_category(input_data){
 
 function getData_productivityType_activity(input_data){
     var data = d3.nest()
-        .key(function(d) { return d.productivityType; })
+        .key(function(d) { return d.productivityType; }) // parent group by productivity
         .sortKeys(d3.ascending)
-        .key(function(d) { return d.activity; })
+        .key(function(d) { return d.activity; }) // child group by activity
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
         })
@@ -294,6 +315,7 @@ function plot_categories_bar(data){
     var x_bar1 = d3.scaleLinear().range([0, width_bar]);
     var y_bar1 = d3.scaleBand().range([height_bar, 0]);
     
+    // initialize bar svg
     const barChart_topCategory = d3.select("#topCategoryBar")
         .append("svg")
             .attr("width", w_bar)
@@ -303,14 +325,17 @@ function plot_categories_bar(data){
         .attr("transform", "translate(" + margin_bar.left + "," + margin_bar.top + ")");
 
         
-    x_bar1.domain([0, d3.max(data, function(d) { return +d.value; })]);
+    //calculate axis extents (min-max range)
+    x_bar1.domain([0, d3.max(data, function(d) { return +d.value; })]); 
     y_bar1.domain(data.map(function(d) { return d.key; })).padding(0.1);
     
+    // plot x axis
     g.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height_bar + ")")
         .call(d3.axisBottom(x_bar1).tickSizeInner(-height_bar).tickSizeOuter(1));
     
+    // x axis label
     g.append("text")
         .attr("class", "axis x label")
         .attr("text-anchor", "end")
@@ -318,6 +343,7 @@ function plot_categories_bar(data){
         .attr("y", height_bar + 28)
         .text("hours");
 
+    // plot bars 
     g.selectAll(".bar")
         .data(data)
         .enter().append("rect")
@@ -525,6 +551,7 @@ function update_activities_bar(data){
 function update_barCharts(productivityType){
     var category_data = [],
         activity_data = [];
+    // extract data for selected productivity
     piechartChildData["activity"].forEach(function(elem){
         if(elem.key === productivityType){
             activity_data = elem.values;
@@ -535,8 +562,13 @@ function update_barCharts(productivityType){
             category_data = elem.values;
         } 
     });
+    // update bars 
     update_activities_bar(activity_data);
     update_categories_bar(category_data);
+}
+function resetBarCharts(){
+    update_activities_bar(getData_topActivities(globalPlotDataRepo));
+    update_categories_bar(getData_topCategories(globalPlotDataRepo));
 }
 // end - bar chart section
 
@@ -559,7 +591,7 @@ function calculate_productivity_score(data){
                 }
             });
         } 
-        var score = ( ((neutral * 0.5) + productive) / total);  
+        var score = ( ((neutral * 0.5) + productive) / total);  // here we are calculating the productivity score
         hourScore.push({ key : element.key ,value : score});
     });
     // console.log(hourScore);
@@ -568,9 +600,9 @@ function calculate_productivity_score(data){
 
 function getData_hour_productivity(input_data){
     var data = d3.nest()
-        .key(function(d) { return +d.hour; })
+        .key(function(d) { return +d.hour; }) // group by hour
         .sortKeys(function(a, b) {  return a-b; })
-        .key(function(d) { return d.productivityType; })
+        .key(function(d) { return d.productivityType; }) // then productivity type
         .sortKeys(d3.ascending)
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
@@ -586,11 +618,11 @@ function plotlineChart(input_data) {
     var margin = {
         top: 5,
         right: 15,
-        bottom: +(lineChart_h * 0.29).toFixed(0), 
+        bottom: +(lineChart_h * 0.29).toFixed(0),  // save enough space for 2nd chart for zoom
         left: 50
     },
     margin2 = {
-        top: +(lineChart_h * 0.78).toFixed(0),
+        top: +(lineChart_h * 0.78).toFixed(0), // keep enough space from parents charts x axis
         right: 15,
         bottom: 20,
         left: 50
@@ -599,6 +631,7 @@ function plotlineChart(input_data) {
         height = lineChart_h - margin.top - margin.bottom,
         height2 = lineChart_h - margin2.top - margin2.bottom;
 
+    // two axis per chart exact copies
     var x = d3.scaleLinear().domain(d3.extent(data, d => +d.key)).range([0, width]),
         x2 = d3.scaleLinear().domain(d3.extent(data, d => +d.key)).range([0, width]),
         y = d3.scaleLinear().domain(d3.extent(data, d => d.value)).range([height, 0]),
@@ -608,6 +641,7 @@ function plotlineChart(input_data) {
         xAxis2 = d3.axisBottom(x2),
         yAxis = d3.axisLeft(y).tickSizeInner(-width).tickSizeOuter(1);
 
+    // the box we see when use to select range 
     var brush = d3.brushX()
         .extent([[0, 0], [width, height2]])
         .on("brush end", brushed);
@@ -618,16 +652,19 @@ function plotlineChart(input_data) {
         .extent([[0, 0], [width, height]])
         .on("zoom", zoomed);
 
+    // the line that is showed in parent chart
     var area = d3.area()
         .x(function(d) { return x(d.key); })
         .y0(height)
         .y1(function(d) { return y(d.value); });
     
+    // line that is showed in zoom chart
     var area2 = d3.area()
         .x(function(d) { return x2(d.key); })
         .y0(height2)
         .y1(function(d) { return y2(d.value); });
 
+    //initializr svg
     var svg = d3.select("#hourProductiveScore")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -645,11 +682,12 @@ function plotlineChart(input_data) {
     var context = svg.append("g")
         .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+    // plot line in parent chart
     focus.append("path")
         .datum(data)
         .attr("class", "path_avg")
         .attr("fill", "none")
-        .attr("stroke", (d) => "#04034A")
+        .attr("stroke", (d) => "#04034A") 
         .attr("d", area);
   
     focus.append("g")
@@ -661,6 +699,7 @@ function plotlineChart(input_data) {
         .attr("class", "y axis")
         .call(yAxis);
   
+    //plot line in zoom chart
     context.append("path")
         .datum(data)
         .attr("class", "path_avg")
@@ -687,17 +726,19 @@ function plotlineChart(input_data) {
 
     function brushed() {
         if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; 
-        var s = d3.event.selection || x2.range();
+        var s = d3.event.selection || x2.range(); // here we are grabbing the selected range 
         var s_map = s.map(x2.invert, x2);
         x.domain(s_map);
         focus.select(".path_avg").attr("d", area);
         focus.select(".x.axis").call(xAxis);
+        // this will zoom the parent chart
         svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
             .scale(width / (s[1] - s[0]))
             .translate(-s[0], 0));
+        // convert to min and max values 
         var start_h = s_map[0].toFixed(0);
         var end_h = s_map[1].toFixed(0);
-        if((start_hour != start_h) || (end_hour != end_h)){
+        if((start_hour != start_h) || (end_hour != end_h)){ // definatly selection has changed so update graphs
             start_hour = start_h;
             end_hour = end_h;
             // console.log(" selection changed -- " + start_hour + " to " + end_hour );
@@ -730,9 +771,9 @@ function plotlineChart(input_data) {
 // start - multiline chart section
 function getData_productivity_percentage_by_date(input_data){
     var date_category_wiseDataRepo = d3.nest()
-        .key(function(d) { return d.date; })
+        .key(function(d) { return d.date; }) // group by date
         .sortKeys(d3.ascending)
-        .key(function(d) { return d.productivityType; })
+        .key(function(d) { return d.productivityType; }) // then productivity type
         .sortKeys(d3.ascending)
         .rollup(function(d) {
             return d3.sum(d, function(g) { return +g.duration; })
@@ -762,6 +803,7 @@ function getData_productivity_percentage_by_date(input_data){
             });
         } 
 
+        // calculate percantages 
         data.push({ key : parseDate(element.key) ,
             "Distracted" : ((distracted/total * 100).toFixed(2)),
             "Neutral" : ((neutral/total * 100).toFixed(2)),
@@ -776,7 +818,7 @@ function plotMultilineChart(data) {
     var margin = {
         top: 5,
         right: 15,
-        bottom: +(multiLineChart_h * 0.28).toFixed(0),
+        bottom: +(multiLineChart_h * 0.28).toFixed(0), // save space for zoom chart
         left: 50
     },
     margin2 = {
@@ -850,7 +892,7 @@ function plotMultilineChart(data) {
     x.domain(d3.extent(data.map(function (d) {
         return d.key;
     })));
-    y.domain([0, 100]);
+    y.domain([0, 100]); // no matter what is smallest data we are going to show 0 to 100 %
 
     x2.domain(x.domain());
     y2.domain(y.domain());
@@ -911,6 +953,7 @@ function plotMultilineChart(data) {
         x.domain(s_map);
         focus.selectAll("path.data").attr("d", function (col) { return area(col)(data); });
         focus.select(".x.axis").call(xAxis);
+        // convert to min and max dates 
         var start_d = formatDate(s_map[0]);
         var end_d = formatDate(s_map[1]);
         if((start_date !== start_d) || (end_date !== end_d)){
@@ -1020,6 +1063,7 @@ function plotGraphs(){
     plotlineChart(getData_hour_productivity(data));
 }
 
+// used by multiline chart and days filter to update line chart, pie and bar charts 
 function updateGraphs(){
     var data =  apply_days_filter(apply_date_filter(globalPlotDataRepo));
 
@@ -1041,6 +1085,7 @@ function updateGraphs(){
     plotlineChart(getData_hour_productivity(data));
 }
 
+// used by line chart zoom function to update pie and bar charts 
 function updateGraphsForHours(){
     var data = apply_hours_filter(apply_days_filter(apply_date_filter(globalPlotDataRepo)));
 
@@ -1059,32 +1104,40 @@ function updateGraphsForHours(){
     plot_activities_bar(getData_topActivities(data));   
 }
 
+// pie chart reset button
+d3.select("#pie_reset")
+.on("click", function(){
+    resetBarCharts();
+})
+
+// actual call to start reading from csv file 
 readFromCsv();
 
+// will read data from selected csv file 
 function fileUpload(t){
     var files = $('#upload')[0];
     var reader = new FileReader();
 
-    const parseFullDate = d3.timeParse("%Y-%m-%d %H:%M:%S"),
-    formatDay = d3.timeFormat("%A"),
+    const parseFullDate = d3.timeParse("%Y-%m-%d %H:%M:%S"), // date format in base csv from resuctime
+    formatDay = d3.timeFormat("%A"), //weekdays 
     formatBackToDate = d3.timeFormat("%m-%d-%Y");
 
     reader.onload = function(e) {
         var d = e.target.result;
         // get rows 
-        var rows = d.split('\n');
+        var rows = d.split('\n'); // d will hold all the rows in text format
         var entries = [];
         
         rows.forEach(r => {
             var columns = r.split(',');
-            var date = columns[0].substring(0,10),
-                hour = columns[0].substring(11,13),
+            var date = columns[0].substring(0,10),  
+                hour = columns[0].substring(11,13), 
                 day = formatDay(parseFullDate(columns[0].substring(0, 19))),
                 activity = columns[1];
 
             if(columns.length > 6){
                 // there is , inside the column data 
-                var detail = columns[2];
+                var detail = columns[2]; // we are not going to use this but it affects next columns s
                 var i = 3;
                 for( ; i < columns.length ; i++){
                     if( $.inArray(columns[i], productive_cat) === -1
@@ -1129,9 +1182,11 @@ function fileUpload(t){
             entry.productivityType = productivity_type;
     
         });
+        // remove unwanted entries 
         entries = entries.filter(function(entry) {
             return (entry.activity === 'explorer') || (entry.activity === 'newtab') ? false : true;
         });
+        // the last one is always default values object 
         entries.pop();
         //console.log(entries);
         globalPlotDataRepo = entries;
@@ -1140,40 +1195,48 @@ function fileUpload(t){
     reader.readAsText(files.files[0]);
 }
 
+// intro Js function as stated in example 
 function startIntroduction(){
     var intro = introJs();
     intro.setOptions({
     steps: [
         { 
-            intro: "content for first step which will show in the center of the page."
+            intro: "Welcome to <br>RescueTime Data Explorer !<br> <br>"
+            + "This dashboard will be provide you with analytics of your laptop use and will allow you to have a clear view on your productivity levels.<br/>"
+            + "This tutorial will present the content of each plot, you can skip it at any moment by clicking on 'Skip'.<br/>" 
+            + "Let's start !"
         },
         {
             element: document.querySelector('.step2'),
-            intro: "this is for multiline chart on top left corner of the page."
+            intro: "This line chart plots your daily productivity percentage. By using the slider below, you can choose a specific range of days to restrict your analysis and all the other plots will be updated accordingly. "
         },
         {
             element: document.querySelector('.step3'),
-            intro: "This is for the line chart on the bottom left corner of the page.",
+            intro: " In this plot, we have an average hourly score so that you can understand in which " 
+            + "parts of the day you are usually the most productive." 
+            + "Using the slider below, you can choose a range of hours to perform your analysis and " 
+            + "the plots on the right side will be updated accordingly.<br/>"
+            + "The formula used to calculate the score is : 1*ratio_productive + 0.5*ratio_neutral"
         },
         {
             element: document.querySelector('.step4'),
-            intro: 'This is for the pie chart.',
+            intro: "This is a pie chart with the overall distribution of productivity over your activies. By using the filters on the right, you can choose to only focus on one of the levels and the bar charts below will get updated."
         },
         {
             element: document.querySelector('.step5'),
-            intro: "This is for the bar chart of top activities.",
+            intro: "5 most used activities during your logged time !",
         },
         {
             element: document.querySelector('.step6'),
-            intro: 'This is for the bar chart of top categories.'
+            intro: "5 most used categories during your logged time"
         },
         {
             element: document.querySelector('.step7'),
-            intro: 'This is for the bar chart of top categories.'
+            intro: "Here you can either remove or add a weekday (ex : if you won't to remove the weekend from productivity analysis and focus on working days)"
         },
         {
             element: document.querySelector('.step8'),
-            intro: 'This is for the bar chart of top categories.'
+            intro: " At last, if you want to play with your own data, click here. <br/>Enjoy the ride !"
         }
     ]
     });
