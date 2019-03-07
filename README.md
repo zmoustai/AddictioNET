@@ -17,8 +17,12 @@ L'application que nous avons développée permet d'avoir un aperçu qualitatif e
 - Sur le dernier, qui est un graphique à barres vertical, on peut voir les sous-catégories dans lesquelles on passe le plus de temps, avec la durée totale passée pour chacune d'elles.
 
 ## Fonctionnalités
+
 ### Filtres
+L'application contient deux types de filtres différents. D'abord, la barre tout en haut à droite peut de choisir les jours sur lesquels on veut faire la visualisation, ce qui peut être utile dans le cas où on veut avoir une idée sur la productivité durant des jours spéciaux, comme les weekends par exemples. On peut également, sur la légende du camembert, cliquer sur une des trois catégories (Distracted, Neutral et Productive) pour ne visualiser que les données correspondant à cette catégorie. Ceci permet d'avoir une vue approfondie et détaillée de chacune des trois catégories. 
+
 ### Zoom
+En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hourly Productivity Score*), on peut trouver des sliders qui permettent de séléctionner les dates où les heures pour lesquelles on veut visualier. Comme on peut le voir sur la démonstration ci-dessus, en modifiant le slider d'un graphe, les autres graphes se mettent à jour pour s'adapter aux nouvelles dates/heures.
 
 ## Ressources utilisées
 - [Interactive Data Visualization course (ECL MOS 5.5) - Romain Vuillemot](https://github.com/LyonDataViz/MOS5.5-Dataviz)
