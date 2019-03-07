@@ -2,7 +2,7 @@
 **Par JABRI Mhamed, MOUSTAINE Zakariae et SAHRAOUI Ahmed**
 
 ## Présentation générale
-Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins scolaires / pro ou pour se divertir. Nous souhaitons analyser notre utilisation et visualiser le temps passé sur chaque catégorie de sites web ou de façon plus granulaire, sur chaque site web. Ces visualisations permettront notamment de quantifier notre productivité au cours des semaines à venir et éventuellement nous aider à être plus productifs en gérant correctement notre utilisation. 
+Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins scolaires/pro ou pour se divertir. Nous souhaitons analyser notre utilisation et visualiser le temps passé sur chaque catégorie de sites web ou de façon plus granulaire, sur chaque site web. Ces visualisations permettront notamment de quantifier notre productivité au cours des semaines à venir et éventuellement nous aider à être plus productifs en gérant correctement notre utilisation. 
 
 <p align="center">
   <img src="demo.gif" width="800">
@@ -19,7 +19,7 @@ L'application que nous avons développée permet d'avoir un aperçu qualitatif e
 ## Fonctionnalités
 
 ### Filtres
-L'application contient deux types de filtres différents. D'abord, la barre tout en haut à droite peut de choisir les jours sur lesquels on veut faire la visualisation, ce qui peut être utile dans le cas où on veut avoir une idée sur la productivité durant des jours spéciaux, comme les weekends par exemples. On peut également, sur la légende du camembert, cliquer sur une des trois catégories (Distracted, Neutral et Productive) pour ne visualiser que les données correspondant à cette catégorie. Ceci permet d'avoir une vue approfondie et détaillée de chacune des trois catégories. 
+L'application contient deux types de filtres différents. D'abord, la barre tout en haut à droite peut de choisir les jours sur lesquels on veut faire la visualisation, ce qui peut être utile dans le cas où on veut avoir une idée sur la productivité durant des jours spéciaux, comme les weekends par exemples. On peut également, sur la légende du camembert, cliquer sur une des trois catégories (**Distracted**, **Neutral** et **Productive**) pour ne visualiser que les données correspondant à cette catégorie. Ceci permet d'avoir une vue approfondie et détaillée de chacune des trois catégories. 
 
 ### Zoom
 En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hourly Productivity Score*), on peut trouver des sliders qui permettent de séléctionner les dates où les heures pour lesquelles on veut visualier. Comme on peut le voir sur la démonstration ci-dessus, en modifiant le slider d'un graphe, les autres graphes se mettent à jour pour s'adapter aux nouvelles dates/heures.
