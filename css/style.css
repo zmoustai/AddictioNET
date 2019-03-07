@@ -4,7 +4,7 @@ body {
 }
 
 td.chart {
-    background-color: #F0EDF5;
+    background-color: #355360;
     border-radius: 15px;
 }
 
@@ -13,6 +13,7 @@ td.chart {
     border-radius: 5px;
     padding: 7pt;
     cursor: pointer;
+    float: right;
 }
 
 .pageHeading {
@@ -20,6 +21,8 @@ td.chart {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 20pt;
     color : floralwhite;
+    margin-top: 2pt;
+    margin-bottom: 10pt;
 }
 
 /* for titles for all plots */
@@ -125,5 +128,15 @@ path {
 
 .label{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    fill : seashell;
+    fill : #111111;
+}
+
+.introjs-tooltip {
+    min-width: 500px !important;
+    max-width: 800px !important; 
+}
+
+.resetBtn {
+    display: inline-block; 
+    margin-left: 25pt;
 }
