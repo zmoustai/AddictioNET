@@ -1,10 +1,10 @@
 body {
-    background-color: #1B2F38;
+    background-color: #FFE0B2; \\#1B2F38
     font-family:  Verdana, Geneva, Tahoma, sans-serif
 }
 
 td.chart {
-    background-color: #355360;
+    background-color: #546E7A; \\ #355360
     border-radius: 15px;
 }
 
