@@ -139,4 +139,8 @@ path {
 .resetBtn {
     display: inline-block; 
     margin-left: 25pt;
+    background-color: #C28754;
+    border-radius: 5px;
+    padding: 7pt;
+    cursor: pointer;
 }
