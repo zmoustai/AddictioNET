@@ -26,6 +26,5 @@ En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hou
 
 ## Ressources utilisées
 - [Interactive Data Visualization course (ECL MOS 5.5) - Romain Vuillemot](https://github.com/LyonDataViz/MOS5.5-Dataviz)
-- https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998?fbclid=IwAR3rObL7VjqSWmA8a51X4M6Jl0S_F8u5RiicRGZsaT6w9JrC9ava9lBrKgo
-- http://bl.ocks.org/natemiller/7dec148bb6aab897e561?fbclid=IwAR07dlGfEBKmKcQl-No6vZOvh1iGqcdorWoKE-ZHbuj1H_-4AIJKuRUqn2g
-- http://bl.ocks.org/j0hnsmith/5591116
+- [Horizontal Bar Chart with specific informations] (https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998?fbclid=IwAR3rObL7VjqSWmA8a51X4M6Jl0S_F8u5RiicRGZsaT6w9JrC9ava9lBrKgo)
+- [Line Charts with zoom] (http://bl.ocks.org/natemiller/7dec148bb6aab897e561?fbclid=IwAR07dlGfEBKmKcQl-No6vZOvh1iGqcdorWoKE-ZHbuj1H_-4AIJKuRUqn2g)
