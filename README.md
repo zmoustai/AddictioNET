@@ -20,13 +20,13 @@ L'application que nous avons développé permet d'avoir un aperçu qualitatif et
 
 ### Filtres
 L'application contient deux types de filtres différents.        
-* Une barre permettant de spécifier les jours de la semaine à inclure pour l'analys. Cela permet par exemple d'exclure les weekends si l'utilisateur s'intéresse principalement à son activité en milieu de semaine.     
+* Une barre permettant de spécifier les jours de la semaine à inclure pour l'analyse. Cela permet par exemple d'exclure les weekends si l'utilisateur s'intéresse principalement à son activité en milieu de semaine.     
 * On peut également, sur la légende du camembert, cliquer sur une des trois catégories (**Distracted**, **Neutral** et **Productive**) pour ne visualiser que les activités et sous-catégories qui sont du type sélectionné. Cela est particulièrement utile pour trouver le top 5 des activités distractives dans notre quotidien et leur volume horaire.
 
 ### Zoom
 En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hourly Productivity Score*), on trouve des sliders qui permettent de séléctionner : 
 * Dans le premier cas, la plage de jours sur lesquels on veut effectuer l'analyse (cela modifie le reste des visualisations) 
-* Dans le deuxième cas, la plage horaire qui nous intéresse. Le reste des graphe (mis à part le premier) sont mis à jour pour n'afficher que l'activité comprise dans cette plage horaire.
+* Dans le deuxième cas, la plage horaire qui nous intéresse. Le reste des graphes (mis à part le premier) sont mis à jour pour n'afficher que l'activité comprise dans cette plage horaire.
 
 **Démonstration des fonctionnalités**                             
 Le gif ci-dessous permet de voir les fonctionnalités décrites en action :
