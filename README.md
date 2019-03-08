@@ -2,7 +2,9 @@
 ***JABRI Mhamed, MOUSTAINE Zakariae et SAHRAOUI Ahmed**  - 03/2019*
 ***
 
-Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins scolaires/pro ou pour se divertir. Nous souhaitons analyser notre utilisation et visualiser le temps passé sur chaque catégorie de sites web ou de façon plus granulaire, sur chaque site web. Ces visualisations permettront notamment de quantifier notre productivité au cours des semaines à venir et éventuellement nous aider à être plus productifs en gérant  correctement notre utilisation. 
+Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins académiqus / professionnels ou pour se divertir en jouant ou en regardant une série.     
+Par conséquent, il est parfois difficile de prendre du recul et réaliser si notre activité devant est souvent nécessaire (productivité) ou plutôt le contraire. En utilisant [RescueTime](https://www.rescuetime.com/), nous avons décidé de mettre en place un dashboard interactif pouur pouvoir analyser notre utilisation et visualiser le temps passé sur chaque catégorie d'activités ou de façon plus granulaire, sur chaque activité.    
+Ces visualisations ont pour but de fournir une idée globale mais aussi précise sur notre gestion de temps sur ordinateur pour pouvoir prendre des mesures et optimiser notre utilisation. 
 
 <p align="center">
   <img src="Capture.JPG" width="800">
@@ -39,4 +41,4 @@ Le gif ci-dessous permet de voir les fonctionnalités décrites en action :
 - [Interactive Data Visualization course (ECL MOS 5.5) - Romain Vuillemot](https://github.com/LyonDataViz/MOS5.5-Dataviz)
 - [Horizontal Bar Chart with specific informations](https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998?fbclid=IwAR3rObL7VjqSWmA8a51X4M6Jl0S_F8u5RiicRGZsaT6w9JrC9ava9lBrKgo)
 - [Line Charts with zoom](http://bl.ocks.org/natemiller/7dec148bb6aab897e561?fbclid=IwAR07dlGfEBKmKcQl-No6vZOvh1iGqcdorWoKE-ZHbuj1H_-4AIJKuRUqn2g)
-- [Intro for vizualisations](https://github.com/usablica/intro.js)
+- [Onboarding for the visualizations](https://github.com/usablica/intro.js)
