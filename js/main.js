@@ -1209,23 +1209,25 @@ function startIntroduction(){
         },
         {
             element: document.querySelector('.step2'),
-            intro: "This line chart plots your daily productivity percentage. By using the slider below, you can choose a specific range of days to restrict your analysis and all the other plots will be updated accordingly. "
+            intro: "This line chart plots your daily productivity percentage. <br>
+		+ "By using the slider below, you can choose a specific range of days to conduct your analysis and all the other plots will be updated accordingly. "
         },
         {
             element: document.querySelector('.step3'),
             intro: " In this plot, we have an average hourly score so that you can understand in which " 
-            + "parts of the day you are usually the most productive." 
-            + "Using the slider below, you can choose a range of hours to perform your analysis and " 
-            + "the plots on the right side will be updated accordingly.<br/>"
-            + "The formula used to calculate the score is : 1*ratio_productive + 0.5*ratio_neutral"
+            + "parts of the day you are usually the most productive.<br>" 
+	    + "The formula used to calculate the hourly score is : 1*ratio_productive + 0.5*ratio_neutral <br>"
+            + "Using the slider below, you can choose a range of hours to conduct your analysis and the plots on the right side will be updated accordingly.<br/>"
+            
         },
         {
             element: document.querySelector('.step4'),
-            intro: "This is a pie chart with the overall distribution of productivity over your activies. By using the filters on the right, you can choose to only focus on one of the levels and the bar charts below will get updated."
+            intro: "This is a pie chart with the overall distribution of productivity over your activies. <br>"
+		"By using the filters on the right, you can choose to only focus on one of the levels and the bar charts below will get updated."
         },
         {
             element: document.querySelector('.step5'),
-            intro: "5 most used activities during your logged time !",
+            intro: "5 most used activities during your logged time ",
         },
         {
             element: document.querySelector('.step6'),
@@ -1233,7 +1235,7 @@ function startIntroduction(){
         },
         {
             element: document.querySelector('.step7'),
-            intro: "Here you can either remove or add a weekday (ex : if you won't to remove the weekend from productivity analysis and focus on working days)"
+            intro: "Here you can either remove or add a weekday (ex : if you want to remove the weekend from productivity analysis and focus on working days)"
         },
         {
             element: document.querySelector('.step8'),
