@@ -1223,7 +1223,7 @@ function startIntroduction(){
         {
             element: document.querySelector('.step4'),
             intro: "This is a pie chart with the overall distribution of productivity over your activies. <br>"
-		"By using the filters on the right, you can choose to only focus on one of the levels and the bar charts below will get updated."
+		+"By using the filters on the right, you can choose to only focus on one of the levels and the bar charts below will get updated."
         },
         {
             element: document.querySelector('.step5'),
