@@ -1201,9 +1201,10 @@ function startIntroduction(){
     intro.setOptions({
     steps: [
         { 
-            intro: "Welcome to <br>RescueTime Data Explorer !<br> <br>"
+            intro: "RescueTime Data Explorer".bold()+" <br> <br>"
             + "This dashboard will be provide you with analytics of your laptop use and will allow you to have a clear view on your productivity levels.<br/>"
             + "This tutorial will present the content of each plot, you can skip it at any moment by clicking on 'Skip'.<br/>" 
+		
             + "Let's start !"
         },
         {
