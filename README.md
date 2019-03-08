@@ -44,3 +44,4 @@ Le gif ci-dessous permet de voir les fonctionnalités décrites en action :
 - [Horizontal Bar Chart with specific informations](https://bl.ocks.org/alandunning/7008d0332cc28a826b37b3cf6e7bd998?fbclid=IwAR3rObL7VjqSWmA8a51X4M6Jl0S_F8u5RiicRGZsaT6w9JrC9ava9lBrKgo)
 - [Line Charts with zoom](http://bl.ocks.org/natemiller/7dec148bb6aab897e561?fbclid=IwAR07dlGfEBKmKcQl-No6vZOvh1iGqcdorWoKE-ZHbuj1H_-4AIJKuRUqn2g)
 - [Onboarding for the visualizations](https://github.com/usablica/intro.js)
+- [Selectize.js]{https://selectize.github.io/selectize.js/} 
