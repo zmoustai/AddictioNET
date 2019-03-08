@@ -1209,7 +1209,7 @@ function startIntroduction(){
         },
         {
             element: document.querySelector('.step2'),
-            intro: "This line chart plots your daily productivity percentage. <br>
+            intro: "This line chart plots your daily productivity percentage. <br>"
 		+ "By using the slider below, you can choose a specific range of days to conduct your analysis and all the other plots will be updated accordingly. "
         },
         {
