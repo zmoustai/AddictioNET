@@ -2,8 +2,10 @@
 ***JABRI Mhamed, MOUSTAINE Zakariae et SAHRAOUI Ahmed**  - 03/2019*
 ***
 
-Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins académiqus / professionnels ou pour se divertir en jouant ou en regardant une série.     
-Par conséquent, il est parfois difficile de prendre du recul et réaliser si notre activité devant est souvent nécessaire (productivité) ou plutôt le contraire. En utilisant [RescueTime](https://www.rescuetime.com/), nous avons décidé de mettre en place un dashboard interactif pouur pouvoir analyser notre utilisation et visualiser le temps passé sur chaque catégorie d'activités ou de façon plus granulaire, sur chaque activité.    
+## Pourquoi ?
+Nous passons énormement de temps sur internet chaque jour, que cela soit pour des besoins académiqus / professionnels ou pour se divertir en jouant ou en regardant une série. Par conséquent, il est parfois difficile de prendre du recul et réaliser si notre activité devant est souvent nécessaire (productivité) ou plutôt le contraire. 
+
+Nous avons donc décidé de mettre en place **AddictioNET** : un dashboard interactif qui utilise les données recueillies par [RescueTime](https://www.rescuetime.com/) pour analyser notre utilisation et visualiser le temps passé sur chaque catégorie d'activités ou de façon plus granulaire, sur chaque activité.      
 Ces visualisations ont pour but de fournir une idée globale mais aussi précise sur notre gestion de temps sur ordinateur pour pouvoir prendre des mesures et optimiser notre utilisation. 
 
 <p align="center">
