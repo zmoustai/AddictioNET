@@ -32,7 +32,7 @@ En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hou
 * Dans le premier cas, la plage de jours sur lesquels on veut effectuer l'analyse (cela modifie le reste des visualisations) 
 * Dans le deuxième cas, la plage horaire qui nous intéresse. Le reste des graphes (mis à part le premier) sont mis à jour pour n'afficher que l'activité comprise dans cette plage horaire.
 
-**Démonstration des fonctionnalités**                             
+### Démonstration des fonctionnalités                             
 Le gif ci-dessous permet de voir les fonctionnalités décrites en action :
 <p align="center">
   <img src="demo.gif" width="800">
