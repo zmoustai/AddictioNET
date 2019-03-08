@@ -19,10 +19,21 @@ L'application que nous avons développé permet d'avoir un aperçu qualitatif et
 ## Fonctionnalités
 
 ### Filtres
-L'application contient deux types de filtres différents. D'abord, la barre tout en haut à droite peut de choisir les jours sur lesquels on veut faire la visualisation, ce qui peut être utile dans le cas où on veut avoir une idée sur la productivité durant des jours spéciaux, comme les weekends par exemples. On peut également, sur la légende du camembert, cliquer sur une des trois catégories (**Distracted**, **Neutral** et **Productive**) pour ne visualiser que les données correspondant à cette catégorie. Ceci permet d'avoir une vue approfondie et détaillée de chacune des trois catégories. 
+L'application contient deux types de filtres différents.        
+* Une barre permettant de spécifier les jours de la semaine à inclure pour l'analys. Cela permet par exemple d'exclure les weekends si l'utilisateur s'intéresse principalement à son activité en milieu de semaine.     
+* On peut également, sur la légende du camembert, cliquer sur une des trois catégories (**Distracted**, **Neutral** et **Productive**) pour ne visualiser que les activités et sous-catégories qui sont du type sélectionné. Cela est particulièrement utile pour trouver le top 5 des activités distractives dans notre quotidien et leur volume horaire.
 
 ### Zoom
-En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hourly Productivity Score*), on peut trouver des sliders qui permettent de séléctionner les dates où les heures pour lesquelles on veut visualier. Comme on peut le voir sur la démonstration ci-dessus, en modifiant le slider d'un graphe, les autres graphes se mettent à jour pour s'adapter aux nouvelles dates/heures.
+En dessous des deux visualisations temporelles (*Productivity Evolution* et *Hourly Productivity Score*), on trouve des sliders qui permettent de séléctionner : 
+* Dans le premier cas, la plage de jours sur lesquels on veut effectuer l'analyse (cela modifie le reste des visualisations) 
+* Dans le deuxième cas, la plage horaire qui nous intéresse. Le reste des graphe (mis à part le premier) sont mis à jour pour n'afficher que l'activité comprise dans cette plage horaire.
+
+** Démonstration des fonctionnalités ** 
+Le gif ci-dessous permet de voir les fonctionnalités décrites en action
+<p align="center">
+  <img src="demo.gif" width="800">
+</p>
+
 
 ## Ressources utilisées
 - [Interactive Data Visualization course (ECL MOS 5.5) - Romain Vuillemot](https://github.com/LyonDataViz/MOS5.5-Dataviz)
