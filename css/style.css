@@ -144,3 +144,11 @@ path {
     padding: 7pt;
     cursor: pointer;
 }
+
+.resetBtn.all {
+    padding-left: 8pt;
+    padding-right: 8pt;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    font-weight: 400;
+}
