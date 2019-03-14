@@ -143,12 +143,14 @@ path {
     border-radius: 5px;
     padding: 7pt;
     cursor: pointer;
+    border: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .resetBtn.all {
     padding-left: 8pt;
     padding-right: 8pt;
-    padding-top: 5pt;
-    padding-bottom: 5pt;
-    font-weight: 400;
+    padding-top: 7pt;
+    padding-bottom: 7pt;
+    font-size: 13pt;
 }
