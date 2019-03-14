@@ -31,9 +31,10 @@ var start_hour = 0,
     start_date = "",
     end_date = "";
 
+var daysSelector = undefined;
 // just to initialise Selectize functionality
 $(function(){
-    $("select").selectize({
+    daysSelector = $("select").selectize({
         items : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], // add entries for days
         create : false, // user won't be able to add new day or delete 
         placeholder : "Select day(s)",
@@ -1108,6 +1109,13 @@ function updateGraphsForHours(){
 d3.select("#pie_reset")
 .on("click", function(){
     resetBarCharts();
+});
+// global reset button
+d3.select("#global_reset")
+.on("click", function(){
+    daysSelector[0].selectize.setValue(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+    selectedDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    plotGraphs();
 })
 
 // actual call to start reading from csv file 
