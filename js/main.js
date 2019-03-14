@@ -568,7 +568,7 @@ function update_barCharts(productivityType){
     update_categories_bar(category_data);
 }
 function resetBarCharts(){
-    var newData = apply_days_filter(apply_hours_filter(globalPlotDataRepo));
+    var newData = apply_hours_filter(apply_days_filter(apply_date_filter(globalPlotDataRepo)));
     update_activities_bar(getData_topActivities(newData));
     update_categories_bar(getData_topCategories(newData));
 }
