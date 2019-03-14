@@ -2,6 +2,7 @@ var selectedDays = [];
 var globalPlotDataRepo = [];
 var dataForDaysSelected = [];
 var totalHrs = 0;
+var isPieReset = false;
 const tooltip = d3.select("body").append("div").attr("class", "toolTip");
 // will be used to convert date string from csv to date format
 const parseDate =  d3.timeParse("%Y-%m-%d");
@@ -200,6 +201,7 @@ function plot_pie(data, parentData){
         .attr("class", (d) => "rect_"+ d.data.key)
         .on("click", (d) => {     
             update_barCharts(d.data.key);
+	    isPieReset = true;
         });
 
     // text in legend
@@ -571,6 +573,7 @@ function resetBarCharts(){
     var newData = apply_hours_filter(apply_days_filter(apply_date_filter(globalPlotDataRepo)));
     update_activities_bar(getData_topActivities(newData));
     update_categories_bar(getData_topCategories(newData));
+    isPieReset = false;
 }
 // end - bar chart section
 
@@ -1109,7 +1112,8 @@ function updateGraphsForHours(){
 // pie chart reset button
 d3.select("#pie_reset")
 .on("click", function(){
-    resetBarCharts();
+	if(isPieReset)
+    	resetBarCharts();
 });
 // global reset button
 d3.select("#global_reset")
