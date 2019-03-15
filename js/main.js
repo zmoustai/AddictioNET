@@ -231,6 +231,12 @@ const barColor = d3.scaleOrdinal()
     .domain([0,1,2,3,4])
     .range(["#ffffd4", "#fed98e", "#fe9929", "#d95f0e", "#993404"]);
     //.range(["#99BBD9", "#6493BD", "#507DA4", "#396285", "#284C6B"]);
+
+const barColor2 = d3.scaleOrdinal()
+    .domain([0,1,2,3,4])
+    .range(["#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494"]);
+    //.range(["#99BBD9", "#6493BD", "#507DA4", "#396285", "#284C6B"]);
+
 var labelWidth = 0;
 
 function getData_topCategories(input_data){
@@ -409,7 +415,7 @@ function plot_activities_bar(data){
         .data(data)
         .enter().append("rect")
             .attr("class", "bar")
-            .attr("fill", (d,i) => barColor(i))
+            .attr("fill", (d,i) => barColor2(i))
             .attr("x", 0)
             .attr("height", y_bar2.bandwidth())
             .attr("y", function(d) { return y_bar2(d.key); })
@@ -527,7 +533,7 @@ function update_activities_bar(data){
         .data(data)
         .enter().append("rect")
             .attr("class", "bar")
-            .attr("fill", (d,i) => barColor(i))
+            .attr("fill", (d,i) => barColor2(i))
             .attr("x", 0)
             .attr("height", y_bar2.bandwidth())
             .attr("y", function(d) { return y_bar2(d.key); })
