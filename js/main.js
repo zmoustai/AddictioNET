@@ -234,7 +234,7 @@ const barColor = d3.scaleOrdinal()
 
 const barColor2 = d3.scaleOrdinal()
     .domain([0,1,2,3,4])
-    .range(["#ffffcc", "#a1dab4", "#41b6c4", "#2c7fb8", "#253494"]);
+    .range(['#f2f0f7','#cbc9e2','#9e9ac8','#756bb1','#54278f']);
     //.range(["#99BBD9", "#6493BD", "#507DA4", "#396285", "#284C6B"]);
 
 var labelWidth = 0;
